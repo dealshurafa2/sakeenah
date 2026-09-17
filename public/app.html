@@ -2,7 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="viewport" id="sk-vp" content="width=480, viewport-fit=cover">
+<script>
+  /* حجم العرض قابل للضبط · the design's sizes were set inside a 402px mock-up,
+     so the page lays out at a wider virtual width and the browser scales the
+     whole thing down. Bigger number = smaller app. Try ?w=520 on the phone
+     itself and keep whatever reads best. */
+  (function () {
+    var w = parseInt(new URLSearchParams(location.search).get('w'), 10);
+    if (w >= 360 && w <= 900) {
+      document.getElementById('sk-vp').setAttribute('content', 'width=' + w + ', viewport-fit=cover');
+    }
+  })();
+</script>
 <meta name="theme-color" content="#1F4A36">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -10,6 +22,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <title>Sakeenah · سكينة</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/css/fonts.css">
@@ -17,39 +31,7 @@
 </head>
 <body>
 
-<div id="sk-page" style="background:#E9DCC5;min-height:100%;box-sizing:border-box;padding:40px 24px;display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:flex-start;font-family:Inter,sans-serif;color:#2C2318">
-
-  <div style="display:flex;flex-direction:column;gap:18px;max-width:340px;min-width:260px">
-    <div style="display:flex;align-items:center;gap:12px">
-      <svg width="40" height="40" viewBox="0 0 120 120" role="img" aria-label="Sakeenah" style="display:block;flex:none">
-        <path d="M60 4c34 0 56 20 56 56s-22 56-56 56S4 94 4 60 26 4 60 4z" fill="#1F4A36"></path>
-        <g transform="rotate(-18 60 60)">
-          <path d="M50 28C66 46 66 74 50 92C34 74 34 46 50 28Z" fill="#F2E8D7"></path>
-          <path d="M70 28C86 46 86 74 70 92C54 74 54 46 70 28Z" fill="#DCB054"></path>
-        </g>
-      </svg>
-      <span style="font-size:30px;font-weight:700;letter-spacing:-0.025em;color:#143527">Sakeenah</span>
-    </div>
-    <p style="margin:0;font-size:19px;line-height:1.6;color:#2C2318;text-wrap:pretty">The whole companion on his own phone, through any wireless earbuds he already owns. Pair, start a session, and every feature — guidance, medicines, his group, and the consent flow — runs from these four tabs.</p>
-
-    <div style="background:#FDF8EF;border:2px solid #6B4A2E;border-radius:24px;padding:20px 22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font-size:17px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#4A3220">Try it</span>
-      <span style="font-size:19px;line-height:1.55">Scan &rarr; connect your microphone &rarr; <strong style="font-weight:600">Start session</strong> &rarr; speak to her, or press <strong style="font-weight:600">Simulate distress</strong> to reach the hinge: she asks, and waits.</span>
-      <span style="font-size:17px;color:#4A3220">Switch to &#1593; in the header to mirror the app into Arabic.</span>
-    </div>
-
-    <div style="background:#F5ECDB;border:2px dashed #6B4A2E;border-radius:24px;padding:20px 22px;display:flex;flex-direction:column;gap:8px">
-      <span style="font-size:17px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#4A3220">Honest note</span>
-      <span style="font-size:17px;line-height:1.55;color:#2C2318">Ordinary earbuds carry her voice and his. Fall and heart sensing needs the Sakeenah earpiece — the app says so rather than implying it.</span>
-    </div>
-
-    <div id="sk-diag" style="background:#FDF8EF;border:2px solid #D9C8A7;border-radius:24px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;font-size:16px;color:#4A3220">
-      <span style="font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-size:15px">Live status</span>
-      <span id="sk-conn">connecting&hellip;</span>
-      <span id="sk-brain">brain: &mdash;</span>
-      <span id="sk-loc">location: &mdash;</span>
-    </div>
-  </div>
+<div id="sk-page" style="background:#E9DCC5;min-height:100%;box-sizing:border-box;display:flex;justify-content:center;align-items:stretch;font-family:Inter,sans-serif;color:#2C2318">
 
   <!-- iPhone bezel: plain HTML/CSS, same 402x874 as the design -->
   <div class="sk-device">

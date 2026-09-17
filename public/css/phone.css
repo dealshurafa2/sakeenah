@@ -21,8 +21,21 @@ button { font-family: inherit; }
 @keyframes sk-sheet   { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes sk-row     { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* ---- iPhone bezel (replaces ios-frame.jsx, same dimensions) ---- */
-.sk-device { flex: none; }
+/* ---- the app fills the window · on a wide screen it sits in a phone-sized
+       column so it still reads as a mobile app rather than a stretched one ---- */
+#sk-page { width: 100%; min-height: 100dvh; }
+.sk-device { flex: none; width: 100%; }
+/* only a real desktop gets the phone-width column; a phone fills its screen */
+@media (min-width: 700px) { .sk-device { max-width: 430px; } }
+.sk-device .sk-bezel {
+  width: 100%; height: 100dvh; max-height: 100dvh;
+  border-radius: 0; padding: 0; box-shadow: none;
+}
+.sk-device .sk-screen { border-radius: 0; }
+.sk-statusbar, .sk-notch, .sk-home-indicator { display: none !important; }
+
+/* ---- the old framed presentation, kept for reference ---- */
+.sk-device--framed { flex: none; }
 .sk-bezel {
   width: 402px; height: 874px;
   background: #1a1a1c;
@@ -83,7 +96,6 @@ button { font-family: inherit; }
 /* narrow screens: drop the bezel, go full-bleed — this is a phone app after all */
 @media (max-width: 880px) {
   #sk-page { padding: 0; gap: 0; }
-  #sk-page > div:first-child { display: none; }
   .sk-bezel { width: 100vw; height: 100vh; border-radius: 0; padding: 0; box-shadow: none; }
   .sk-screen { border-radius: 0; }
   .sk-notch { display: none; }
@@ -104,7 +116,6 @@ button { font-family: inherit; }
    so it can be embedded at any size without relying on a breakpoint. */
 body.film { background: #F2E8D7; }
 body.film #sk-page { padding: 0 !important; gap: 0 !important; min-height: 100%; align-items: stretch !important; }
-body.film #sk-page > div:first-child { display: none !important; }
 body.film .sk-bezel {
   width: 100vw; height: 100vh; border-radius: 0; padding: 0; box-shadow: none;
 }
