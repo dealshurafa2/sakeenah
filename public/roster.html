@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Campaign Dashboard · Sakeenah</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/staff.css">
+</head>
+<body data-title-en="Campaign Dashboard · Sakeenah" data-title-ar="لوحة الحملة · سكينة">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">س</div>
+    <div class="brand-text">
+      <h1 data-i18n="brand.name">Sakeenah</h1>
+      <p data-i18n="brand.tag"></p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <nav class="nav">
+      <a href="/roster" class="active" data-i18n="nav.roster">Campaign Dashboard</a>
+      <a href="/app" data-i18n="nav.agent">Pilgrim App</a>
+      <a href="/alerts" data-i18n="nav.alerts">Live Alerts</a>
+    </nav>
+    <div class="lang-switch"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <h2 id="campaign-name">Campaign Dashboard</h2>
+    <p id="campaign-sub"></p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h3 data-i18n="roster.tableTitle">Registered pilgrims</h3>
+      <span id="count"></span>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th data-i18n="th.pilgrim">Pilgrim</th>
+            <th data-i18n="th.age">Age</th>
+            <th data-i18n="th.condition">Medical conditions</th>
+            <th data-i18n="th.meds">Medications and times</th>
+            <th data-i18n="th.earpiece">Earpiece ID</th>
+            <th data-i18n="th.group">Group</th>
+            <th data-i18n="th.contact">Emergency contact</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/roster.js"></script>
+</body>
+</html>

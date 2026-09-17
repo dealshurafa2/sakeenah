@@ -1,0 +1,238 @@
+{
+  "campaign": {
+    "id": "CMP-JED-07",
+    "name": "حملة النور للحج والعمرة",
+    "name_en": "Al-Noor Hajj & Umrah Campaign",
+    "leader": "الأستاذ سلطان العتيبي",
+    "leader_en": "Mr. Sultan Al-Otaibi",
+    "leaderPhone": "+966 55 123 4567",
+    "season": "موسم حج 1447هـ",
+    "season_en": "Hajj Season 1447 AH"
+  },
+  "pilgrims": [
+    {
+      "id": "P-001",
+      "name": "الحاج محمد الزعبي",
+      "name_en": "Hajj Mohammad Al-Zoubi",
+      "age": 67,
+      "nationality": "الأردن",
+      "nationality_en": "Jordan",
+      "condition": "سكري من النوع الثاني · ضغط دم مرتفع",
+      "condition_en": "Type 2 diabetes · High blood pressure",
+      "riskLevel": "مرتفع",
+      "earpieceId": "SK-1042",
+      "groupId": "المجموعة أ",
+      "groupId_en": "Group A",
+      "emergencyContact": {
+        "name": "أحمد محمد الزعبي (الابن)",
+        "name_en": "Ahmad Al-Zoubi (son)",
+        "relation": "ابنه",
+        "phone": "+962 79 555 0142"
+      },
+      "medications": [
+        {
+          "name": "ميتفورمين",
+          "name_en": "Metformin",
+          "dose": "٥٠٠ ملغم",
+          "dose_en": "500 mg",
+          "note": "بعد الطعام مع كوب ماء",
+          "note_en": "after food, with a glass of water",
+          "times": ["07:00", "20:00"]
+        },
+        {
+          "name": "أسبرين",
+          "name_en": "Aspirin",
+          "dose": "٨١ ملغم",
+          "dose_en": "81 mg",
+          "note": "بعد وجبة الظهر",
+          "note_en": "after the midday meal",
+          "times": ["12:30"]
+        }
+      ],
+      "isDemoPilgrim": true,
+      "notes": "أول حج له · يرتدي سماعة سكينة",
+      "notes_en": "First Hajj · wearing a Sakeenah earpiece"
+    },
+    {
+      "id": "P-002",
+      "name": "الحاجة فاطمة العمري",
+      "name_en": "Hajjah Fatima Al-Amri",
+      "age": 72,
+      "nationality": "مصر",
+      "nationality_en": "Egypt",
+      "condition": "ضعف بصر شديد",
+      "condition_en": "Severe visual impairment",
+      "riskLevel": "مرتفع",
+      "earpieceId": "SK-1043",
+      "groupId": "المجموعة أ",
+      "groupId_en": "Group A",
+      "emergencyContact": {
+        "name": "سارة العمري",
+        "name_en": "Sara Al-Amri (daughter)",
+        "relation": "ابنتها",
+        "phone": "+20 10 2233 4455"
+      },
+      "medications": [
+        {
+          "name": "قطرة العين",
+          "name_en": "Eye drops",
+          "dose": "قطرتان",
+          "dose_en": "2 drops",
+          "note": "لكل عين",
+          "note_en": "in each eye",
+          "times": ["08:00", "16:00"]
+        }
+      ],
+      "notes": "تحتاج مرافقاً عند الزحام",
+      "notes_en": "Needs a companion in crowds"
+    },
+    {
+      "id": "P-003",
+      "name": "الحاج عبدالرحمن سليمان",
+      "name_en": "Hajj Abdulrahman Suleiman",
+      "age": 69,
+      "nationality": "السودان",
+      "nationality_en": "Sudan",
+      "condition": "قصور في القلب",
+      "condition_en": "Heart failure",
+      "riskLevel": "مرتفع",
+      "earpieceId": "SK-1044",
+      "groupId": "المجموعة ب",
+      "groupId_en": "Group B",
+      "emergencyContact": {
+        "name": "خالد سليمان",
+        "name_en": "Khalid Suleiman (brother)",
+        "relation": "أخوه",
+        "phone": "+249 91 234 5678"
+      },
+      "medications": [
+        {
+          "name": "بيسوبرولول",
+          "name_en": "Bisoprolol",
+          "dose": "٢٫٥ ملغم",
+          "dose_en": "2.5 mg",
+          "note": "صباحاً",
+          "note_en": "in the morning",
+          "times": ["07:30"]
+        }
+      ],
+      "notes": "يمنع المشي الطويل تحت الشمس",
+      "notes_en": "No long walks in direct sun"
+    },
+    {
+      "id": "P-004",
+      "name": "الحاج إبراهيم كوندي",
+      "name_en": "Hajj Ibrahim Kunde",
+      "age": 64,
+      "nationality": "نيجيريا",
+      "nationality_en": "Nigeria",
+      "condition": "سليم · حاجز لغوي (لا يتحدث العربية)",
+      "condition_en": "Healthy · Language barrier (no Arabic)",
+      "riskLevel": "متوسط",
+      "earpieceId": "SK-1045",
+      "groupId": "المجموعة ب",
+      "groupId_en": "Group B",
+      "emergencyContact": {
+        "name": "موسى كوندي",
+        "name_en": "Musa Kunde (son)",
+        "relation": "ابنه",
+        "phone": "+234 80 1122 3344"
+      },
+      "medications": [],
+      "notes": "أول حج له",
+      "notes_en": "First Hajj"
+    },
+    {
+      "id": "P-005",
+      "name": "الحاجة زينب الحسيني",
+      "name_en": "Hajjah Zainab Al-Husseini",
+      "age": 75,
+      "nationality": "العراق",
+      "nationality_en": "Iraq",
+      "condition": "هشاشة عظام · صعوبة في المشي",
+      "condition_en": "Osteoporosis · Difficulty walking",
+      "riskLevel": "مرتفع",
+      "earpieceId": "SK-1046",
+      "groupId": "المجموعة ج",
+      "groupId_en": "Group C",
+      "emergencyContact": {
+        "name": "علي الحسيني",
+        "name_en": "Ali Al-Husseini (son)",
+        "relation": "ابنها",
+        "phone": "+964 77 889 9001"
+      },
+      "medications": [
+        {
+          "name": "فيتامين د",
+          "name_en": "Vitamin D",
+          "dose": "١٠٠٠ وحدة",
+          "dose_en": "1000 IU",
+          "note": "مع الإفطار",
+          "note_en": "with breakfast",
+          "times": ["07:00"]
+        }
+      ],
+      "notes": "تستخدم كرسياً متحركاً عند التنقل",
+      "notes_en": "Uses a wheelchair when travelling"
+    },
+    {
+      "id": "P-006",
+      "name": "الحاج يوسف بن طاهر",
+      "name_en": "Hajj Youssef Ben Taher",
+      "age": 61,
+      "nationality": "المغرب",
+      "nationality_en": "Morocco",
+      "condition": "ربو",
+      "condition_en": "Asthma",
+      "riskLevel": "متوسط",
+      "earpieceId": "SK-1047",
+      "groupId": "المجموعة ج",
+      "groupId_en": "Group C",
+      "emergencyContact": {
+        "name": "نادية بن طاهر",
+        "name_en": "Nadia Ben Taher (wife)",
+        "relation": "زوجته",
+        "phone": "+212 6 6677 8899"
+      },
+      "medications": [
+        {
+          "name": "بخاخ الربو",
+          "name_en": "Asthma inhaler",
+          "dose": "بختان",
+          "dose_en": "2 puffs",
+          "note": "عند الحاجة وصباحاً",
+          "note_en": "as needed and each morning",
+          "times": ["09:00"]
+        }
+      ],
+      "notes": "يتأثر بالغبار والزحام",
+      "notes_en": "Affected by dust and crowds"
+    }
+  ],
+  "resolvedIncidents": [
+    {
+      "id": "INC-0031",
+      "pilgrimName": "الحاج عبدالرحمن سليمان",
+      "pilgrimName_en": "Hajj Abdulrahman Suleiman",
+      "earpieceId": "SK-1044",
+      "type": "إرهاق حراري",
+      "type_en": "Heat exhaustion",
+      "at": "أمس ١٤:٢٢",
+      "at_en": "Yesterday 14:22",
+      "outcome": "وصل المشرف خلال ٤ دقائق · نُقل إلى نقطة التبريد · الحالة مستقرة",
+      "outcome_en": "Supervisor reached him in 4 minutes · moved to a cooling point · stable"
+    },
+    {
+      "id": "INC-0030",
+      "pilgrimName": "الحاجة فاطمة العمري",
+      "pilgrimName_en": "Hajjah Fatima Al-Amri",
+      "earpieceId": "SK-1043",
+      "type": "ابتعاد عن المجموعة",
+      "type_en": "Drifted from group",
+      "at": "أمس ٠٩:٥١",
+      "at_en": "Yesterday 09:51",
+      "outcome": "أرشدتها سكينة صوتياً · عادت للمجموعة خلال دقيقتين دون تدخل",
+      "outcome_en": "Sakeenah guided her by voice · rejoined within two minutes, no staff needed"
+    }
+  ]
+}

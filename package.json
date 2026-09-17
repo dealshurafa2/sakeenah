@@ -1,0 +1,28 @@
+{
+  "name": "sakeenah",
+  "version": "0.1.0",
+  "description": "Sakeenah — an AI voice companion for vulnerable Hajj pilgrims (prototype)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "selftest": "node selftest.js",
+    "voices": "node voices.js",
+    "models": "node models.js",
+    "bench": "node bench.js",
+    "fonts": "node fonts.js",
+    "tunnel": "node tunnel.js",
+    "vo": "node vo.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "msedge-tts": "^2.0.7",
+    "socket.io": "^4.8.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sakeenah · film · phone</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/fonts.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden;
+               background: #E9DCC5; font-family: Inter, system-ui, sans-serif; }
+
+  /* الهاتف في منتصف الشاشة · the phone, centred and as large as it will go.
+     Crop straight to the bezel in Canva — the ground around it is flat. */
+  #wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  #bezel {
+    position: relative;
+    aspect-ratio: 402 / 874;
+    height: 94vh; max-width: 94vw;
+    background: #1a1a1c; border-radius: 6.4vh; padding: 1.3vh;
+    box-shadow: 0 0 0 0.25vh #3a3a3e, 0 5vh 10vh -5vh rgba(44,35,24,0.85);
+  }
+  #phone { width: 100%; height: 100%; border: 0; border-radius: 5.3vh; display: block; background: #F2E8D7; }
+
+  #curtain {
+    position: fixed; inset: 0; z-index: 30; background: #143527; color: #FDF8EF;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    text-align: center; padding: 40px;
+  }
+  #curtain h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -0.03em; }
+  #curtain p  { margin: 0; font-size: 21px; color: #DCB054; max-width: 60ch; line-height: 1.6; }
+  #go {
+    font-family: inherit; font-size: 26px; font-weight: 600; color: #143527; background: #DCB054;
+    border: none; border-radius: 999px; padding: 22px 46px; cursor: pointer; margin-top: 8px;
+  }
+  #go:hover { background: #E8C777; }
+  .hint { font-size: 17px; color: #8FAF9D; line-height: 1.7; }
+  /* بطاقة صغيرة في الزاوية · a small corner chip, so the last frame still
+     shows the alert rather than a message covering it */
+  #done {
+    position: fixed; z-index: 25; right: 22px; bottom: 22px;
+    background: #143527; color: #FDF8EF; border: 2px solid #DCB054; border-radius: 999px;
+    padding: 12px 22px; font-size: 18px; font-weight: 700;
+    display: none; box-shadow: 0 10px 24px -14px rgba(0,0,0,0.6);
+  }
+</style>
+</head>
+<body>
+
+<div id="wrap">
+  <div id="bezel"><iframe id="phone" src="/app?film=1" title="Pilgrim app"></iframe></div>
+</div>
+
+<div id="done">✓ Stop the recording</div>
+
+<div id="curtain">
+  <h1>Film set · the phone</h1>
+  <p>His phone alone, in a device frame on a flat ground, running the same 49-second sequence as
+     the board film set. Her voice plays from this one — record it with system audio on.</p>
+  <button id="go" type="button">Start the film</button>
+  <span class="hint">
+    Press F11 first, then start your recorder.<br>
+    Align this take with the board take on the white flash.
+  </span>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/film-core.js"></script>
+<script>
+  document.getElementById('go').addEventListener('click', async () => {
+    document.getElementById('curtain').remove();
+    await SakeenahFilm.roll({
+      onEnd: () => { document.getElementById('done').style.display = 'block'; }
+    });
+  });
+</script>
+</body>
+</html>

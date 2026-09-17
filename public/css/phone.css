@@ -1,0 +1,112 @@
+/* Sakeenah phone app — only the bits that cannot be inline styles.
+   Every colour and size in the app itself lives inline on the elements,
+   exactly as exported from Claude Design. */
+
+* { -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: #E9DCC5;
+  font-family: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+a { color: #1F4A36; }
+a:hover { color: #4A3220; }
+button { font-family: inherit; }
+
+/* ---- the four animations, verbatim from the design ---- */
+@keyframes sk-breathe { 0%,100% { box-shadow: 0 0 0 0 rgba(184,134,43,0.6); } 50% { box-shadow: 0 0 0 22px rgba(184,134,43,0); } }
+@keyframes sk-scan    { 0% { transform: scale(0.7); opacity: 0.85; } 100% { transform: scale(1.25); opacity: 0; } }
+@keyframes sk-think   { 0%,80%,100% { transform: translateY(0); opacity: 0.45; } 40% { transform: translateY(-8px); opacity: 1; } }
+@keyframes sk-speak   { 0%,100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+@keyframes sk-sheet   { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes sk-row     { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ---- iPhone bezel (replaces ios-frame.jsx, same dimensions) ---- */
+.sk-device { flex: none; }
+.sk-bezel {
+  width: 402px; height: 874px;
+  background: #1a1a1c;
+  border-radius: 56px;
+  padding: 11px;
+  box-sizing: border-box;
+  box-shadow:
+    0 0 0 2px #3a3a3e,
+    0 30px 70px -30px rgba(44,35,24,0.8),
+    inset 0 0 2px rgba(255,255,255,0.35);
+  position: relative;
+}
+.sk-screen {
+  width: 100%; height: 100%;
+  border-radius: 46px;
+  overflow: hidden;
+  background: #F2E8D7;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.sk-statusbar {
+  box-sizing: border-box;
+  flex: none; height: 52px;
+  background: #1F4A36; color: #FDF8EF;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 30px 0;
+  font-size: 15px; font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+  pointer-events: none;
+}
+.sk-notch {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  width: 108px; height: 30px; border-radius: 999px; background: #0d0d0e;
+}
+.sk-sbicons { display: flex; align-items: center; gap: 5px; }
+.sk-home-indicator {
+  position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+  width: 140px; height: 5px; border-radius: 999px;
+  background: #2C2318; opacity: 0.35; z-index: 3; pointer-events: none;
+}
+#sk-app { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+/* hover / active / focus states, hoisted out of the design's style-hover attrs */
+.sk-btn-green:hover { background: #143527 !important; }
+.sk-btn-green:active { transform: translateY(1px); }
+.sk-btn-pale:hover { background: #E9DCC5 !important; }
+.sk-btn-row:hover { background: #F5ECDB !important; }
+.sk-btn-amber:hover { background: #F6E3B8 !important; }
+.sk-btn-red:hover { background: #7E2314 !important; }
+.sk-btn-ok:hover { background: #1F5C3C !important; }
+.sk-f:focus-visible { outline: 3px solid #8A5A10; outline-offset: 3px; }
+.sk-f-gold:focus-visible { outline: 3px solid #DCB054; outline-offset: 2px; }
+.sk-f-ink:focus-visible { outline: 3px solid #2C2318; outline-offset: 3px; }
+
+[hidden] { display: none !important; }
+
+/* narrow screens: drop the bezel, go full-bleed — this is a phone app after all */
+@media (max-width: 880px) {
+  #sk-page { padding: 0; gap: 0; }
+  #sk-page > div:first-child { display: none; }
+  .sk-bezel { width: 100vw; height: 100vh; border-radius: 0; padding: 0; box-shadow: none; }
+  .sk-screen { border-radius: 0; }
+  .sk-notch { display: none; }
+}
+
+/* على الهاتف: ملء الشاشة بلا إطار · on a phone the bezel goes and the app fills the screen */
+@media (max-width: 880px) {
+  /* أي شريط متبقٍ أسفل الشاشة يطابق شريط التبويبات · any strip below the tab
+     bar takes the tab bar's colour instead of the sand ground */
+  body { background: #FDF8EF; }
+  .sk-bezel { height: 100dvh; }
+  .sk-statusbar { display: none; }          /* the phone draws its own */
+  .sk-home-indicator { display: none; }
+}
+
+
+/* وضع التصوير · film mode: /app?film=1 strips everything but the phone itself,
+   so it can be embedded at any size without relying on a breakpoint. */
+body.film { background: #F2E8D7; }
+body.film #sk-page { padding: 0 !important; gap: 0 !important; min-height: 100%; align-items: stretch !important; }
+body.film #sk-page > div:first-child { display: none !important; }
+body.film .sk-bezel {
+  width: 100vw; height: 100vh; border-radius: 0; padding: 0; box-shadow: none;
+}
+body.film .sk-screen { border-radius: 0; }
+body.film .sk-notch, body.film .sk-statusbar, body.film .sk-home-indicator { display: none !important; }

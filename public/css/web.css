@@ -1,0 +1,36 @@
+/* Sakeenah — campaign board.  Every colour and size is inline on the elements,
+   exactly as exported from Claude Design; only these three animations, the
+   base reset and the interaction states need a stylesheet. */
+
+* { -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: #F2E8D7;
+  font-family: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+a { color: #1F4A36; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+a:hover { color: #4A3220; }
+input::placeholder { color: #6D5C47; }
+button { font-family: inherit; }
+
+@keyframes sk-pulse  { 0%,100% { box-shadow: 0 0 0 0 rgba(158,47,28,0.5); } 50% { box-shadow: 0 0 0 14px rgba(158,47,28,0); } }
+@keyframes sk-row    { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes sk-drawer { from { transform: translateX(28px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+/* interaction states, hoisted out of the design's style-hover attributes */
+.w-row:hover      { background: #FBF4E7 !important; }
+.w-pale:hover     { background: #E9DCC5 !important; }
+.w-red:hover      { background: #7E2314 !important; }
+.w-ok:hover       { background: #1F5C3C !important; }
+.w-dark:hover     { background: #143527 !important; }
+.w-f:focus-visible      { outline: 3px solid #8A5A10; outline-offset: 3px; }
+.w-f-gold:focus-visible { outline: 3px solid #DCB054; outline-offset: 2px; }
+
+[hidden] { display: none !important; }
+
+[dir="rtl"] .ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+}

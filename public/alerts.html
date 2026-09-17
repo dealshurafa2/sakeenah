@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Live Alerts · Sakeenah</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/staff.css">
+</head>
+<body data-title-en="Live Alerts · Sakeenah" data-title-ar="التنبيهات الحيّة · سكينة">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">س</div>
+    <div class="brand-text">
+      <h1 data-i18n="brand.name">Sakeenah</h1>
+      <p data-i18n="brand.tag"></p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <nav class="nav">
+      <a href="/roster" data-i18n="nav.roster">Campaign Dashboard</a>
+      <a href="/app" data-i18n="nav.agent">Pilgrim App</a>
+      <a href="/alerts" class="active" data-i18n="nav.alerts">Live Alerts</a>
+    </nav>
+    <div class="lang-switch"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <h2 data-i18n="alerts.title">Live Alerts</h2>
+    <p><span data-i18n="alerts.sub"></span> <span id="conn" class="conn-note"></span></p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h3 data-i18n="alerts.active">Active emergency alerts</h3>
+      <span id="alert-count" data-i18n="alerts.none">None</span>
+    </div>
+    <div id="alerts">
+      <div class="empty" id="alerts-empty">
+        <span class="big">☾</span>
+        <span data-i18n="alerts.empty"></span><br>
+        <span style="font-size:12.5px" data-i18n="alerts.emptySub"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h3 data-i18n="alerts.events">Campaign events today</h3>
+      <span data-i18n="alerts.eventsSub"></span>
+    </div>
+    <div id="events">
+      <div class="empty" id="events-empty" style="padding:26px" data-i18n="alerts.noEvents"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h3 data-i18n="alerts.resolved">Past closed incidents</h3>
+      <span data-i18n="alerts.archive">Archive</span>
+    </div>
+    <div id="resolved"></div>
+  </div>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/i18n.js"></script>
+<script src="/js/alerts.js"></script>
+</body>
+</html>

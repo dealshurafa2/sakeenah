@@ -1,0 +1,22 @@
+# secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# dependencies
+node_modules/
+
+# generated audio
+selftest-voice*.mp3
+voice-samples/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+
+video-vo/

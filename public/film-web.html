@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sakeenah · film · board</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/fonts.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #F2E8D7; overflow: hidden;
+               font-family: Inter, system-ui, sans-serif; }
+  #board { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  #curtain {
+    position: fixed; inset: 0; z-index: 30; background: #143527; color: #FDF8EF;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    text-align: center; padding: 40px;
+  }
+  #curtain h1 { margin: 0; font-size: 52px; font-weight: 700; letter-spacing: -0.03em; }
+  #curtain p  { margin: 0; font-size: 21px; color: #DCB054; max-width: 60ch; line-height: 1.6; }
+  #go {
+    font-family: inherit; font-size: 26px; font-weight: 600; color: #143527; background: #DCB054;
+    border: none; border-radius: 999px; padding: 22px 46px; cursor: pointer; margin-top: 8px;
+  }
+  #go:hover { background: #E8C777; }
+  .hint { font-size: 17px; color: #8FAF9D; line-height: 1.7; }
+  /* بطاقة صغيرة في الزاوية · a small corner chip, so the last frame still
+     shows the alert rather than a message covering it */
+  #done {
+    position: fixed; z-index: 25; right: 22px; bottom: 22px;
+    background: #143527; color: #FDF8EF; border: 2px solid #DCB054; border-radius: 999px;
+    padding: 12px 22px; font-size: 18px; font-weight: 700;
+    display: none; box-shadow: 0 10px 24px -14px rgba(0,0,0,0.6);
+  }
+</style>
+</head>
+<body>
+
+<iframe id="board" src="/web?film=1&view=roster" title="Campaign board"></iframe>
+
+<div id="done">✓ Stop the recording</div>
+
+<div id="curtain">
+  <h1>Film set · the campaign board</h1>
+  <p>The board, full screen and nothing else, running the same 49-second sequence as the phone
+     film set. A three-two-one countdown and one white frame mark the sync point.</p>
+  <button id="go" type="button">Start the film</button>
+  <span class="hint">
+    Press F11 first, then start your recorder with system audio on.<br>
+    Align this take with the phone take on the white flash.
+  </span>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/film-core.js"></script>
+<script>
+  const board = document.getElementById('board');
+  const boardView = (v) => board.contentWindow &&
+    board.contentWindow.postMessage({ sakeenah: 'view', view: v }, '*');
+
+  document.getElementById('go').addEventListener('click', async () => {
+    document.getElementById('curtain').remove();
+    boardView('roster');
+    await SakeenahFilm.roll({
+      onBeat: (b) => { if (b.view) boardView(b.view); },
+      onEnd: () => { document.getElementById('done').style.display = 'block'; }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+/* Sakeenah — the two staff screens, in the phone app's visual language.
+   Loaded after app.css: same palette, but the design's grammar —
+   2px brown lines, 24px radii, a deep-green header bar, and type
+   large enough to read across a room. */
+
+body { background: #F2E8D7; color: #2C2318; font-size: 17px; }
+
+/* ---------------------------- header bar ---------------------------- */
+.topbar {
+  background: #1F4A36;
+  border-bottom: none;
+  padding: 16px 24px;
+  box-shadow: 0 10px 28px -24px rgba(44, 35, 24, 0.9);
+}
+.brand-mark {
+  background: #FDF8EF; color: #1F4A36;
+  border: 2px solid #DCB054;
+  width: 44px; height: 44px; border-radius: 999px;
+  font-size: 22px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.brand-text h1 { font-size: 21px; color: #FDF8EF; font-weight: 700; }
+.brand-text p { font-size: 15px; color: #DCB054; }
+
+.nav { gap: 8px; }
+.nav a {
+  font-size: 16px; font-weight: 600;
+  color: #FDF8EF; background: transparent;
+  border: 2px solid #2C6349; border-radius: 999px;
+  min-height: 44px; padding: 0 18px;
+  display: inline-flex; align-items: center;
+}
+.nav a:hover { background: #143527; color: #FDF8EF; }
+.nav a.active { background: #FDF8EF; color: #143527; border-color: #FDF8EF; }
+.nav a:focus-visible { outline: 3px solid #DCB054; outline-offset: 2px; }
+
+/* --------------------------- page and cards -------------------------- */
+.wrap { padding: 28px 24px 56px; max-width: 1600px; }
+.page-head { margin-bottom: 24px; }
+.page-head h2 { font-size: clamp(26px, 3.4vw, 34px); color: #143527; font-weight: 700; line-height: 1.2; }
+.page-head p { font-size: 18px; color: #4A3220; line-height: 1.55; }
+
+.card {
+  background: #FDF8EF;
+  border: 2px solid #6B4A2E;
+  border-radius: 24px;
+  padding: 22px 24px;
+  box-shadow: none;
+}
+.card + .card { margin-top: 20px; }
+.card-title { padding-bottom: 14px; border-bottom: 2px solid #E5D8BD; margin-bottom: 16px; }
+.card-title h3 { font-size: 21px; color: #143527; font-weight: 700; }
+.card-title span { font-size: 16px; color: #4A3220; }
+
+/* ------------------------------- table ------------------------------- */
+.table-scroll { border: 2px solid #D9C8A7; border-radius: 20px; }
+table { font-size: 15.5px; background: #FDF8EF; min-width: 1020px; }
+/* keep the seven columns inside the card on a laptop screen */
+thead th:nth-child(2), tbody td:nth-child(2) { width: 62px; }
+thead th:nth-child(5), tbody td:nth-child(5),
+thead th:nth-child(6), tbody td:nth-child(6) { width: 118px; white-space: nowrap; }
+thead th:nth-child(7), tbody td:nth-child(7) { width: 210px; }
+thead th {
+  font-size: 15px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #4A3220; background: #F5ECDB;
+  border-bottom: 2px solid #D9C8A7;
+  padding: 13px 14px;
+}
+tbody td { padding: 14px; border-bottom: 1px solid #E5D8BD; line-height: 1.5; vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #F5ECDB; }
+.cell-sub { font-size: 15px; color: #4A3220; margin-top: 4px; }
+.med-line { font-size: 15.5px; line-height: 1.6; }
+.med-time { font-size: 15px; color: #4A3220; }
+
+/* ------------------------------- pills ------------------------------- */
+.pill {
+  font-size: 15px; font-weight: 600;
+  border-radius: 999px; border-width: 2px;
+  padding: 5px 13px;
+}
+.pill.gold { color: #8A5A10; border-color: #C79A3C; background: #FAEDCF; }
+.pill.high { color: #9E2F1C; border-color: #D8A291; background: #FBE8E1; }
+.pill.mid  { color: #8A5A10; border-color: #C79A3C; background: #FAEDCF; }
+.pill.mono { color: #1F4A36; border-color: #A98A60; background: #F5ECDB; letter-spacing: 0.5px; }
+
+/* ------------------------------ alerts ------------------------------- */
+.alert-card {
+  background: #FBE8E1;
+  border: 2px solid #9E2F1C;
+  border-radius: 24px;
+  padding: 22px 24px;
+}
+.alert-head h3 { font-size: 24px; color: #9E2F1C; font-weight: 700; line-height: 1.25; }
+.alert-head .when { font-size: 16px; color: #4A3220; }
+
+.empty { padding: 40px 24px; font-size: 18px; color: #4A3220; line-height: 1.6; }
+.empty .big { font-size: 44px; color: #A98A60; display: block; margin-bottom: 12px; }
+
+.banner { border-radius: 20px; border-width: 2px; font-size: 17px; padding: 16px 18px; }
+.conn-note { font-size: 16px; }
+
+/* phone numbers stay left-to-right even in Arabic */
+.ltr { direction: ltr; unicode-bidi: isolate; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 720px) {
+  .topbar { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .wrap { padding: 20px 16px 48px; }
+  .card { padding: 18px 16px; border-radius: 20px; }
+}

@@ -1,0 +1,25 @@
+# Render blueprint · سكينة
+# Deploys the whole prototype — the pilgrim app, the campaign board and the
+# film sets — as one web service. Set GEMINI_API_KEY in the dashboard; it is
+# deliberately not in this file and never in the repository.
+services:
+  - type: web
+    name: sakeenah
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false            # set this by hand in the Render dashboard
+      - key: NODE_VERSION
+        value: "22"
+      - key: FALLBACK_BRAIN
+        value: "1"             # keep answering if Gemini is rate-limited
+      - key: DRIFT_AFTER_SECONDS
+        value: "0"             # no timers firing on their own during a demo
+      - key: DEMO_MED_AFTER_SECONDS
+        value: "0"
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash

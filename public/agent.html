@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sakeenah · Voice Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body data-title-en="Sakeenah · Voice Companion" data-title-ar="سكينة · رفيق الحاج الصوتي">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">س</div>
+    <div class="brand-text">
+      <h1 data-i18n="brand.name">Sakeenah</h1>
+      <p data-i18n="brand.tag">An AI voice companion for Hajj pilgrims</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <nav class="nav">
+      <a href="/roster" data-i18n="nav.roster">Campaign Dashboard</a>
+      <a href="/agent" class="active" data-i18n="nav.agent">Voice Companion</a>
+      <a href="/alerts" data-i18n="nav.alerts">Live Alerts</a>
+    </nav>
+    <div class="lang-switch"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <h2 data-i18n="agent.title">Sakeenah Voice Companion</h2>
+    <p data-i18n="agent.sub">This is what the pilgrim hears through his earpiece.</p>
+  </div>
+
+  <div id="banner-emergency" class="banner red"></div>
+  <div id="banner-confirm" class="banner amber"></div>
+  <div id="banner-info" class="banner info"></div>
+
+  <div class="grid-2">
+    <section>
+      <div class="card">
+        <div class="card-title">
+          <h3 data-i18n="agent.conv">Voice conversation</h3>
+          <span id="conn-state"></span>
+        </div>
+
+        <div class="agent-main">
+          <button id="mic" class="mic-btn" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
+            <span class="mic-label" id="mic-label" data-i18n="mic.start">Start session</span>
+          </button>
+        </div>
+        <div class="status-line" id="status" data-i18n="status.initial"></div>
+
+        <div class="mic-meter">
+          <div class="mic-level"><span id="mic-level-bar"></span></div>
+          <span class="mic-device" id="mic-device" data-i18n="mic.meterHint"></span>
+          <select id="mic-select" class="mic-select" hidden></select>
+        </div>
+
+        <div class="transcript" id="transcript"></div>
+
+        <form class="text-fallback" id="text-form">
+          <input id="text-input" data-i18n-ph="text.placeholder" autocomplete="off">
+          <button class="btn" type="submit" data-i18n="btn.send">Send</button>
+        </form>
+
+        <details class="sim demo-panel" open>
+          <summary data-i18n="demo.summary">Demo triggers</summary>
+          <p data-i18n="demo.body"></p>
+          <div class="row">
+            <button class="btn" type="button" data-demo="medication" data-i18n="demo.med">Medication reminder</button>
+            <button class="btn" type="button" data-demo="drift" data-i18n="demo.drift">Drifted from group</button>
+            <button class="btn" type="button" data-demo="drift_resolved" data-i18n="demo.back">Rejoined group</button>
+            <button class="btn" type="button" data-demo="fall" data-i18n="demo.fall">Fall detected</button>
+          </div>
+          <p class="sim-note" data-i18n="demo.fallNote"></p>
+        </details>
+
+        <details class="sim">
+          <summary data-i18n="sim.summary">Location tracking</summary>
+          <p data-i18n="sim.body"></p>
+
+          <div class="mode-row">
+            <button class="btn mode-btn active" type="button" data-source="sim" data-i18n="gps.sim">Demo simulation</button>
+            <button class="btn mode-btn" type="button" data-source="real" data-i18n="gps.real">Real GPS (this device)</button>
+          </div>
+
+          <div id="sim-controls" class="row" style="margin-top:10px">
+            <button class="btn ghost" type="button" data-sim="drifting" data-i18n="sim.drift">Trigger drift now</button>
+            <button class="btn ghost" type="button" data-sim="with_group" data-i18n="sim.return">Return him to the group</button>
+          </div>
+
+          <div id="gps-controls" hidden style="margin-top:10px">
+            <div class="row">
+              <button class="btn ghost" type="button" id="btn-anchor" data-i18n="gps.anchor">Set group point here</button>
+              <label class="thr">
+                <span data-i18n="gps.threshold">Alert distance</span>
+                <input type="number" id="thr-input" min="10" max="500" step="5" value="40"> m
+              </label>
+            </div>
+            <p class="gps-note" id="gps-status" data-i18n="gps.waiting"></p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <aside>
+      <div class="card">
+        <div class="card-title">
+          <h3 data-i18n="agent.pilgrimCard">Registered pilgrim</h3>
+          <span id="earpiece-tag"></span>
+        </div>
+        <div id="pilgrim-card" class="state-grid"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h3 data-i18n="agent.sessionState">Session status</h3>
+          <span class="live-dot"></span>
+        </div>
+        <div class="state-grid">
+          <div class="state-box">
+            <span class="k" data-i18n="state.step">Tawaf step</span>
+            <span class="v" id="st-step">—</span>
+          </div>
+          <div class="state-box" id="box-distance">
+            <span class="k" data-i18n="state.distance">Distance from group</span>
+            <span class="v" id="st-distance">—</span>
+          </div>
+          <div class="state-box">
+            <span class="k" data-i18n="state.med">Next medication</span>
+            <span class="v" id="st-med">—</span>
+          </div>
+          <div class="state-box">
+            <span class="k" data-i18n="state.distress">Distress monitoring</span>
+            <span class="v" id="st-distress">—</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<audio id="player" hidden></audio>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/i18n.js"></script>
+<script src="/js/agent.js"></script>
+</body>
+</html>
