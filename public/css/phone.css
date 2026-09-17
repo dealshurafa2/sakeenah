@@ -121,3 +121,24 @@ body.film .sk-bezel {
 }
 body.film .sk-screen { border-radius: 0; }
 body.film .sk-notch, body.film .sk-statusbar, body.film .sk-home-indicator { display: none !important; }
+
+
+/* ---- sitting flush on a real phone ----------------------------------- */
+/* 100dvh follows Safari's toolbar as it shows and hides, so the app is
+   exactly as tall as the visible screen and the tab bar lands on the bottom
+   edge instead of floating above it or being pushed under it. */
+html, body { overflow: hidden; overscroll-behavior: none; }
+#sk-page, .sk-device, .sk-bezel, .sk-screen { height: 100dvh; max-height: 100dvh; }
+#sk-app { min-height: 0; }
+
+/* The header reserves 58px for the status bar, which is a guess. On a device
+   that reports a real inset, use that instead — Safari with its toolbar and
+   the installed home-screen version report different values. Desktop and the
+   film sets report nothing and keep the 58px the design was drawn with. */
+@supports (padding: env(safe-area-inset-top)) {
+  @media (max-width: 700px) {
+    #sk-app > div > div:first-child {
+      padding-top: calc(14px + env(safe-area-inset-top, 44px)) !important;
+    }
+  }
+}

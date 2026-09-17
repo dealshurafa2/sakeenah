@@ -770,7 +770,7 @@ function sheet() {
   if (!state.asking) return '';
   const t = L();
   return `
-  <div style="flex:none;background:#FAEDCF;border-top:3px solid #8A5A10;padding:20px 18px 26px;display:flex;flex-direction:column;gap:14px;animation:sk-sheet 320ms ease-out both;box-shadow:0 -18px 40px -22px rgba(44,35,24,0.6)">
+  <div style="flex:none;background:#FAEDCF;border-top:3px solid #8A5A10;padding:20px 18px 22px;display:flex;flex-direction:column;gap:14px;animation:sk-sheet 320ms ease-out both;box-shadow:0 -18px 40px -22px rgba(44,35,24,0.6)">
     <span style="font-size:16px;font-weight:700;letter-spacing:${t.track};text-transform:${t.caps};color:#8A5A10">${esc(t.askingKicker)}</span>
     <span style="font-size:24px;font-weight:700;line-height:1.35;color:#2C2318">${esc(t.askingTitle)}</span>
     <span style="font-size:17px;color:#4A3220;line-height:1.5">${esc(t.askingNote)}</span>
@@ -795,7 +795,7 @@ function tabbar() {
   const keys = ['home', 'voice', 'meds', 'safety'];
   const icons = ['home', 'mic', 'pill', 'shield'];
   return `
-  <div style="flex:none;background:#FDF8EF;border-top:2px solid #6B4A2E;padding:10px 8px 30px;display:flex;gap:4px">
+  <div style="flex:none;background:#FDF8EF;border-top:2px solid #6B4A2E;padding:10px 8px calc(10px + env(safe-area-inset-bottom, 20px));display:flex;gap:4px">
     ${keys.map((k, i) => {
       const on = state.tab === k;
       return `<button type="button" class="sk-f" data-act="tab" data-arg="${k}" style="flex:1;min-width:0;font-family:${F()};background:${on ? GREEN : '#FDF8EF'};border:2px solid ${on ? GREEN : '#D9C8A7'};border-radius:20px;padding:10px 4px;cursor:pointer;display:flex;flex-direction:column;gap:5px;align-items:center;min-height:64px">
